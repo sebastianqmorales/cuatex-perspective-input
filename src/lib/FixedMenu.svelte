@@ -1,6 +1,7 @@
 <script>
 	export let editor;
 
+	import { pushComments } from '$lib/comments.js';
 	import boldIcon from '$lib/assets/bold-icon.svg';
 	import linkIcon from '$lib/assets/link-icon.svg';
 	import italicsIcon from '$lib/assets/italics-icon.svg';
@@ -74,7 +75,7 @@
 			<!-- only submit if there is a certain number of characters  -->
 			<button
 				class="submit"
-				on:click={console.log(editor.getJSON())}
+				on:click={pushComments(editor.getJSON())}
 				on:click={editor.commands.setContent('')}>submit</button
 			>
 		</div>
