@@ -32,10 +32,12 @@
 	});
 </script>
 
-<div class="user-name">Comment as <a href="/">sebasisawesome</a></div>
-<div class="wrapper">
-	<div class="element-wrapper" bind:this={element} />
-	<FixedMenu {editor} />
+<div class="container">
+	<div class="user-name">Comment as <a href="/">sebasisawesome</a></div>
+	<div class="wrapper">
+		<div class="element-wrapper" bind:this={element} />
+		<FixedMenu {editor} />
+	</div>
 </div>
 
 <style>

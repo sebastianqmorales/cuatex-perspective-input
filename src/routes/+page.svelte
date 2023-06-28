@@ -5,10 +5,20 @@
 
 <h1>perspective input for Cuatex</h1>
 
-<Tiptap />
-<CommentStyling />
+<div class="homePage">
+	<Tiptap />
+	<CommentStyling />
+</div>
 
 <style>
+	.homePage {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+		padding: 60px;
+
+		align-items: center;
+	}
 	h1 {
 		color: white;
 	}
