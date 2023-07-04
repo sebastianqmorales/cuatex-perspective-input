@@ -1,6 +1,7 @@
 <script>
 	export let editor;
 
+	import LinkButton from './LinkButton.svelte';
 	import boldIcon from '$lib/assets/bold-icon.svg';
 	import italicsIcon from '$lib/assets/italics-icon.svg';
 	import bulletlistIcon from '$lib/assets/bullet-list-icon.svg';
@@ -36,6 +37,7 @@
 			>
 				<img src={numberlistIcon} alt="Numbered List" />
 			</button>
+			<LinkButton {editor} />
 		</div>
 		<div class="left-side">
 			<!-- only submit if there is a certain number of characters  -->
@@ -56,6 +58,11 @@
 		align-items: center;
 		padding-left: 10px;
 		padding-right: 10px;
+	}
+
+	.right-side {
+		display: flex;
+		flex-direction: row;
 	}
 
 	button {
