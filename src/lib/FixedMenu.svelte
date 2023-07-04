@@ -2,33 +2,9 @@
 	export let editor;
 
 	import boldIcon from '$lib/assets/bold-icon.svg';
-	import linkIcon from '$lib/assets/link-icon.svg';
 	import italicsIcon from '$lib/assets/italics-icon.svg';
 	import bulletlistIcon from '$lib/assets/bullet-list-icon.svg';
 	import numberlistIcon from '$lib/assets/number-list-icon.svg';
-
-	function setLink() {
-		const previousUrl = editor.getAttributes('link').href;
-		// custom modal or dropdown should go here
-		const url = window.prompt('URL', previousUrl);
-
-		// cancelled
-		if (url === null) {
-			return;
-		}
-
-		// empty
-		if (url === '') {
-			editor.chain().focus().extendMarkRange('link').unsetLink().run();
-
-			return;
-		}
-
-		// update link
-		editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
-
-		// toggle link
-	}
 </script>
 
 {#if editor}
@@ -59,15 +35,6 @@
 				class={editor.isActive('orderedList') ? 'is-active' : ''}
 			>
 				<img src={numberlistIcon} alt="Numbered List" />
-			</button>
-			<!-- <button
-				on:click={() => editor.chain().focus().toggleLink({ href: setLink() }).run()}
-				class:active={editor.isActive('link') ? 'is-active' : ''}
-			>
-				<img src={linkIcon} alt="Link" />
-			</button> -->
-			<button on:click={setLink} class:active={editor.isActive('link') ? 'is-active' : ''}>
-				<img src={linkIcon} alt="Link" />
 			</button>
 		</div>
 		<div class="left-side">
