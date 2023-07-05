@@ -6,7 +6,7 @@
 	import { scale } from 'svelte/transition';
 
 	let show = false;
-	let menu = null;
+	let menu;
 
 	function setLink() {
 		const previousUrl = editor.getAttributes('link').href;
@@ -56,7 +56,27 @@
 	});
 
 	function handleLink(event) {
-		return console.log(event);
+		const formData = new FormData(event.target);
+		const data = {};
+
+		for (let field of formData) {
+			const [key, value] = field;
+			data[key] = value;
+		}
+
+		// editor.commands.setLink({ href: data.link });
+		editor.chain().focus().extendMarkRange('link').toggleLink({ href: data.link }).run();
+		editor
+			.chain()
+			.focus()
+			.command(({ tr }) => {
+				// manipulate the transaction
+				tr.insertText(data.title);
+
+				return true;
+			})
+			.run();
+		return console.log(data);
 	}
 </script>
 
