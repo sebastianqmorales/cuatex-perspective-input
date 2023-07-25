@@ -4,18 +4,19 @@
 	import StarterKit from '@tiptap/starter-kit';
 
 	// loop through commentsArray or figure out how to handle multiple comments, etc
-	let output = generateHTML(commentsArray[0], [StarterKit]);
 </script>
 
-<div class="perspectiveContainer">
-	<div class="perspectiveContainer__details">
-		<div class="perspectiveContainer__userName">sebasisawesome</div>
-		<div class="perspectiveContainer__date">10 min ago</div>
+{#each commentsArray as comment}
+	<div class="perspectiveContainer">
+		<div class="perspectiveContainer__details">
+			<div class="perspectiveContainer__userName">sebasisawesome</div>
+			<div class="perspectiveContainer__date">10 min ago</div>
+		</div>
+		<div class="perspectiveContainer__content">
+			{@html comment}
+		</div>
 	</div>
-	<div class="perspectiveContainer__content">
-		{@html output}
-	</div>
-</div>
+{/each}
 
 <style>
 	.perspectiveContainer {

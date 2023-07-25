@@ -4,10 +4,16 @@
 	import StarterKit from '@tiptap/starter-kit';
 	import Placeholder from '@tiptap/extension-placeholder';
 	import Link from '@tiptap/extension-link';
-	import FixedMenu from './FixedMenu.svelte';
+
+	import { pushComments } from '$lib/comments.js';
+	import boldIcon from '$lib/assets/bold-icon.svg';
+	import linkIcon from '$lib/assets/link-icon.svg';
+	import italicsIcon from '$lib/assets/italics-icon.svg';
+	import bulletlistIcon from '$lib/assets/bullet-list-icon.svg';
+	import numberlistIcon from '$lib/assets/number-list-icon.svg';
 	let element;
 	let editor;
-
+	let commentContent;
 	onMount(() => {
 		editor = new Editor({
 			element: element,
@@ -30,13 +36,63 @@
 			editor.destroy();
 		}
 	});
+
+	function pushContent() {
+		commentContent = editor.getHTML();
+		return pushComments(String(commentContent));
+	}
 </script>
 
 <div class="container">
 	<div class="user-name">Comment as <a href="/">sebasisawesome</a></div>
 	<div class="wrapper">
 		<div class="element-wrapper" bind:this={element} />
-		<FixedMenu {editor} />
+		<form method="POST" on:submit|preventDefault>
+			<fieldset>
+				{#if editor}
+					<div class="menu">
+						<div class="right-side">
+							<button
+								on:click={() => console.log && editor.chain().focus().toggleBold().run()}
+								disabled={!editor.can().chain().focus().toggleBold().run()}
+								class={editor.isActive('bold') ? 'is-active' : ''}
+							>
+								<img src={boldIcon} alt="Bold" />
+							</button>
+							<button
+								on:click={() => editor.chain().focus().toggleItalic().run()}
+								disabled={!editor.can().chain().focus().toggleItalic().run()}
+								class={editor.isActive('italic') ? 'is-active' : ''}
+							>
+								<img src={italicsIcon} alt="Italics" />
+							</button>
+							<button
+								on:click={() => editor.chain().focus().toggleBulletList().run()}
+								class={editor.isActive('bulletList') ? 'is-active' : ''}
+							>
+								<img src={bulletlistIcon} alt="Bullet List" />
+							</button>
+							<button
+								on:click={() => editor.chain().focus().toggleOrderedList().run()}
+								class={editor.isActive('orderedList') ? 'is-active' : ''}
+							>
+								<img src={numberlistIcon} alt="Numbered List" />
+							</button>
+						</div>
+						<div class="left-side">
+							<!-- only submit if there is a certain number of characters  -->
+							<input
+								class="submit"
+								type="submit"
+								placeholder="submit"
+								on:click={pushContent}
+								on:click={editor.commands.setContent('')}
+							/>
+						</div>
+					</div>
+				{/if}
+			</fieldset>
+		</form>
 	</div>
 </div>
 

@@ -1,32 +1,7 @@
-let commentsArray = [
-	{
-		type: 'doc',
-		content: [
-			{
-				type: 'paragraph',
-				content: [
-					{
-						type: 'text',
-						text: 'Example '
-					},
-					{
-						type: 'text',
-						marks: [
-							{
-								type: 'bold'
-							}
-						],
-						text: 'Text'
-					}
-				]
-			}
-		]
-	}
-];
-
-function pushComments(obj) {
-	commentsArray.push(obj);
+function pushComments(str) {
+	commentsArray.push(str);
 	return console.log(commentsArray);
 }
+let commentsArray = ['<p>tests <strong>does this still work? </strong></p>'];
 
 export { commentsArray, pushComments };

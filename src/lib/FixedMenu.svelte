@@ -7,29 +7,6 @@
 	import italicsIcon from '$lib/assets/italics-icon.svg';
 	import bulletlistIcon from '$lib/assets/bullet-list-icon.svg';
 	import numberlistIcon from '$lib/assets/number-list-icon.svg';
-
-	function setLink() {
-		const previousUrl = editor.getAttributes('link').href;
-		// custom modal or dropdown should go here
-		const url = window.prompt('URL', previousUrl);
-
-		// cancelled
-		if (url === null) {
-			return;
-		}
-
-		// empty
-		if (url === '') {
-			editor.chain().focus().extendMarkRange('link').unsetLink().run();
-
-			return;
-		}
-
-		// update link
-		editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
-
-		// toggle link
-	}
 </script>
 
 {#if editor}
@@ -61,12 +38,6 @@
 			>
 				<img src={numberlistIcon} alt="Numbered List" />
 			</button>
-			<!-- <button
-				on:click={() => editor.chain().focus().toggleLink({ href: setLink() }).run()}
-				class:active={editor.isActive('link') ? 'is-active' : ''}
-			>
-				<img src={linkIcon} alt="Link" />
-			</button> -->
 			<button on:click={setLink} class:active={editor.isActive('link') ? 'is-active' : ''}>
 				<img src={linkIcon} alt="Link" />
 			</button>
@@ -76,6 +47,7 @@
 			<button
 				class="submit"
 				on:click={pushComments(editor.getJSON())}
+				on:click={console.log(editor.getHTML())}
 				on:click={editor.commands.setContent('')}>submit</button
 			>
 		</div>
