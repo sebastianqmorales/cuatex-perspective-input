@@ -7,7 +7,6 @@
 
 	import { pushComments } from '$lib/comments.js';
 	import boldIcon from '$lib/assets/bold-icon.svg';
-	import linkIcon from '$lib/assets/link-icon.svg';
 	import italicsIcon from '$lib/assets/italics-icon.svg';
 	import bulletlistIcon from '$lib/assets/bullet-list-icon.svg';
 	import numberlistIcon from '$lib/assets/number-list-icon.svg';
@@ -79,6 +78,46 @@
 								<img src={numberlistIcon} alt="Numbered List" />
 							</button>
 						</div>
+						<input
+							class="commentInput__radio-button-input commentInput__radio-button--agreeing"
+							id={`commentType_agreeing`}
+							value="agreeing"
+							type="radio"
+							name="comment_type"
+						/>
+						<label
+							class="commentInput__radio-button-label commentInput__radio-button-label--agreeing"
+							for={`commentType_agreeing`}
+						>
+							Agreeing
+						</label>
+						<input
+							class="commentInput__radio-button-input commentInput__radio-button--neutral"
+							id={`commentType_neutral`}
+							value="neutral"
+							type="radio"
+							name="comment_type"
+							checked
+						/>
+						<label
+							class="commentInput__radio-button-label commentInput__radio-button-label--neutral"
+							for={`commentType_neutral`}
+						>
+							Neutral
+						</label>
+						<input
+							class="commentInput__radio-button-input commentInput__radio-button--disagreeing"
+							id={`commentType_disagreeing`}
+							value="disagreeing"
+							type="radio"
+							name="comment_type"
+						/>
+						<label
+							class="commentInput__radio-button-label commentInput__radio-button-label--disagreeing"
+							for={`commentType_disagreeing`}
+						>
+							Disagreeing
+						</label>
 						<div class="left-side">
 							<!-- only submit if there is a certain number of characters  -->
 							<input
