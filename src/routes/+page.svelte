@@ -1,13 +1,19 @@
 <script>
 	import Tiptap from '../lib/tiptap.svelte';
 	import CommentStyling from '$lib/commentStyling.svelte';
+
+	function pushComments(str) {
+		commentsArray.push(str);
+		return console.log(commentsArray);
+	}
+	let commentsArray = ['<p>tests <strong>does this still work? </strong></p>'];
 </script>
 
 <h1>perspective input for Cuatex</h1>
 
 <div class="homePage">
-	<Tiptap />
-	<CommentStyling />
+	<Tiptap props={pushComments} />
+	<CommentStyling {commentsArray} />
 </div>
 
 <style>

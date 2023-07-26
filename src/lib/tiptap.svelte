@@ -10,6 +10,7 @@
 	import italicsIcon from '$lib/assets/italics-icon.svg';
 	import bulletlistIcon from '$lib/assets/bullet-list-icon.svg';
 	import numberlistIcon from '$lib/assets/number-list-icon.svg';
+	export let props;
 	let element;
 	let editor;
 	let commentContent;
@@ -124,7 +125,7 @@
 								class="submit"
 								type="submit"
 								placeholder="submit"
-								on:click={pushContent}
+								on:click={props.pushContent}
 								on:click={editor.commands.setContent('')}
 							/>
 						</div>
